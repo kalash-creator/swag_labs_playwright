@@ -9,3 +9,4 @@ LOCKED_USER = os.getenv("LOCKED_USER")
 PASSWORD = os.getenv("PASSWORD")
 BROWSER = os.getenv("BROWSER", "chromium")
 HEADLESS = os.getenv("HEADLESS", "true").lower() == "true"
+
