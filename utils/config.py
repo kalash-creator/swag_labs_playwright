@@ -9,7 +9,7 @@ STANDARD_USER = os.getenv("STANDARD_USER")
 LOCKED_USER = os.getenv("LOCKED_USER")
 PASSWORD = os.getenv("PASSWORD")
 
-FAULTY_USERNAME = os.getenv("FAULTY_USERNAME")
+FAULTY_USERNAME = os.getenv("INVALID_USER")
 FAULTY_PASSWORD = os.getenv("FAULTY_PASSWORD")
 
 BROWSER = os.getenv("BROWSER", "chromium")

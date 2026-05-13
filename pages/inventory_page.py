@@ -6,7 +6,7 @@ class InventoryPage(BasePage):
     INVENTORY_ITEMS = ".inventory_item"
     PRODUCT_NAMES = ".inventory_item_name"
     PRODUCT_PRICES = ".inventory_item_price"
-    SORT_DROPDOWN = "[data-test='product_sort_container']"
+    SORT_DROPDOWN = "[data-test='product-sort-container']"
     CART_BADGE = ".shopping_cart_badge"
     CART_ICON = ".shopping_cart_link"
     MENU_BUTTON = "#react-burger-menu-btn"

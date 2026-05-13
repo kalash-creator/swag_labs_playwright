@@ -19,7 +19,15 @@ class LoginPage(BasePage):
         self.page.click(self.LOGIN_BUTTON)
 
     def get_error_message(self) -> str:
+        self.page.locator(self.ERROR_MESSAGE).wait_for(state="visible")
         return self.page.locator(self.ERROR_MESSAGE).inner_text()
 
     def is_error_displayed(self) -> bool:
+        self.page.locator(self.ERROR_MESSAGE).wait_for(state="visible")
         return self.page.locator(self.ERROR_MESSAGE).is_visible()
+
+    def is_username_field_visible(self) -> bool:
+        return self.page.locator(self.USERNAME_INPUT).is_visible()
+
+    def is_password_field_visible(self) -> bool:
+        return self.page.locator(self.PASSWORD_INPUT).is_visible()
