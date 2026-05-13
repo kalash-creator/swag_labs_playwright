@@ -1,4 +1,5 @@
 from pages.inventory_page import InventoryPage
+from utils.helpers import parse_price
 
 
 class TestInventory:
@@ -6,6 +7,7 @@ class TestInventory:
     # TC_INV_01
     def test_product_count(self, logged_in_page):
         inventory = InventoryPage(logged_in_page)
+
         assert inventory.get_product_count() == 6
 
     # TC_INV_02
@@ -13,10 +15,15 @@ class TestInventory:
         inventory = InventoryPage(logged_in_page)
 
         inventory.sort_by("lohi")
-        prices = inventory.get_all_product_prices()
-        prices = [float(p.replace("$", "")) for p in prices]
+
+        prices = [
+            parse_price(price)
+            for price in inventory.get_all_product_prices()
+        ]
 
         assert prices == sorted(prices)
+        assert prices[0] == 7.99
+        assert prices[-1] == 49.99
 
     # TC_INV_03
     def test_sort_name_z_to_a(self, logged_in_page):
@@ -31,9 +38,12 @@ class TestInventory:
     def test_add_to_cart(self, logged_in_page):
         inventory = InventoryPage(logged_in_page)
 
-        inventory.add_product_to_cart_by_name("Sauce Labs Backpack")
-        inventory.add_product_to_cart_by_name("Sauce Labs Bike Light")
+        assert inventory.get_cart_badge_count() == 0
 
+        inventory.add_product_to_cart_by_name("Sauce Labs Backpack")
+        assert inventory.get_cart_badge_count() == 1
+
+        inventory.add_product_to_cart_by_name("Sauce Labs Bike Light")
         assert inventory.get_cart_badge_count() == 2
 
     # TC_INV_05
@@ -41,6 +51,8 @@ class TestInventory:
         inventory = InventoryPage(logged_in_page)
 
         inventory.add_product_to_cart_by_name("Sauce Labs Backpack")
+        assert inventory.get_cart_badge_count() == 1
+
         inventory.remove_product_from_cart_by_name("Sauce Labs Backpack")
 
         assert inventory.get_cart_badge_count() == 0

@@ -22,3 +22,9 @@ class ProductDetailPage(BasePage):
 
     def click_back_to_products(self):
         self.page.click(self.BACK_BUTTON)
+
+    def is_add_to_cart_visible(self) -> bool:
+        return self.page.locator(self.ADD_TO_CART).is_visible()
+
+    def is_back_to_products_visible(self) -> bool:
+        return self.page.locator(self.BACK_BUTTON).is_visible()

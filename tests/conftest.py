@@ -1,7 +1,7 @@
 import pytest
 from playwright.sync_api import sync_playwright
 
-from utils.config import BASE_URL, BROWSER, HEADLESS
+from utils.config import BROWSER, HEADLESS
 from pages.login_page import LoginPage
 from test_data.users import VALID_USER
 
@@ -45,4 +45,4 @@ def logged_in_page(page):
 
     page.wait_for_url("**/inventory.html")
 
-    return page
+    yield page
