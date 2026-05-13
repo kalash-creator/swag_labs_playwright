@@ -1,5 +1,6 @@
-.env
 venv/
-__pycach__/
-.pytest_cache/
+__pycache__/
+*.pyc
+.env
 reports/
+.idea/
